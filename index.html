@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沖繩 7/5–7/9 🌊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --ocean:#0096c7;--ocean2:#00b4d8;
+  --foam:#caf0f8;--sand:#ffd166;--coral:#ff6b6b;
+  --bg:#fff;--bg2:#f0fbff;--txt:#1a2e3b;--txt2:#5b7a8a;
+  --border:#d0edf5;--card:#fff;
+}
+body{font-family:'Noto Sans TC',sans-serif;font-size:14px;color:var(--txt);max-width:480px;margin:0 auto;background:var(--bg);}
+
+/* hide all radio inputs */
+input[type=radio]{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+
+/* ---- TOP BAR ---- */
+.top-bar{background:linear-gradient(135deg,#023e8a,#0096c7);color:#fff;padding:10px 16px 8px;display:flex;align-items:center;justify-content:space-between;}
+.top-bar-title{font-family:'Pacifico',cursive;font-size:17px}
+.top-bar-sub{font-size:10px;opacity:0.8;margin-top:1px}
+.top-bar-badge{background:rgba(255,255,255,0.2);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;border:1px solid rgba(255,255,255,0.3)}
+
+/* ---- BOTTOM NAV ---- */
+.bottom-nav{position:sticky;bottom:0;display:flex;background:#fff;border-top:1.5px solid var(--border);box-shadow:0 -4px 16px rgba(0,150,199,0.1);z-index:100;}
+.nav-label{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;padding:8px 2px 10px;color:var(--txt2);font-size:9px;font-weight:700;letter-spacing:0.2px;position:relative;user-select:none;}
+.nav-label .nav-icon{font-size:20px;line-height:1}
+
+/* active state for nav via :checked on radio */
+#nav0:checked ~ * .nav-label[for=nav0],
+#nav1:checked ~ * .nav-label[for=nav1],
+#nav2:checked ~ * .nav-label[for=nav2],
+#nav3:checked ~ * .nav-label[for=nav3],
+#nav4:checked ~ * .nav-label[for=nav4],
+#nav5:checked ~ * .nav-label[for=nav5],
+#nav6:checked ~ * .nav-label[for=nav6]{color:var(--ocean)}
+
+#nav0:checked ~ * .nav-label[for=nav0]::before,
+#nav1:checked ~ * .nav-label[for=nav1]::before,
+#nav2:checked ~ * .nav-label[for=nav2]::before,
+#nav3:checked ~ * .nav-label[for=nav3]::before,
+#nav4:checked ~ * .nav-label[for=nav4]::before,
+#nav5:checked ~ * .nav-label[for=nav5]::before,
+#nav6:checked ~ * .nav-label[for=nav6]::before{
+  content:'';position:absolute;top:0;left:20%;right:20%;
+  height:3px;background:linear-gradient(90deg,var(--ocean),var(--ocean2));
+  border-radius:0 0 3px 3px;
+}
+
+/* ---- MAIN PAGES ---- */
+.pages-wrap{min-height:60vh}
+.page-section{display:none;padding:14px 14px 24px}
+#nav0:checked ~ .pages-wrap .page-section.s-days{display:block}
+#nav1:checked ~ .pages-wrap .page-section.s-food{display:block}
+#nav2:checked ~ .pages-wrap .page-section.s-buy{display:block}
+#nav3:checked ~ .pages-wrap .page-section.s-transport{display:block}
+#nav4:checked ~ .pages-wrap .page-section.s-tips{display:block}
+#nav5:checked ~ .pages-wrap .page-section.s-mapland{display:block}
+#nav6:checked ~ .pages-wrap .page-section.s-mapfood{display:block}
+
+/* ---- DAY TABS ---- */
+.day-tabs-bar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 0 12px;margin-bottom:4px}
+.day-tabs-bar::-webkit-scrollbar{display:none}
+.day-tab-label{flex:none;padding:7px 14px;border-radius:20px;font-size:11.5px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--bg2);color:var(--txt2);white-space:nowrap;line-height:1.3;text-align:center;user-select:none;}
+
+#day0:checked ~ .pages-wrap .day-tab-label[for=day0],
+#day1:checked ~ .pages-wrap .day-tab-label[for=day1],
+#day2:checked ~ .pages-wrap .day-tab-label[for=day2],
+#day3:checked ~ .pages-wrap .day-tab-label[for=day3],
+#day4:checked ~ .pages-wrap .day-tab-label[for=day4]{
+  background:linear-gradient(135deg,var(--ocean),var(--ocean2));
+  color:#fff;border-color:transparent;
+  box-shadow:0 3px 10px rgba(0,150,199,0.3);
+}
+
+/* day content visibility */
+.day-content{display:none}
+#day0:checked ~ .pages-wrap .day-content.d0{display:block}
+#day1:checked ~ .pages-wrap .day-content.d1{display:block}
+#day2:checked ~ .pages-wrap .day-content.d2{display:block}
+#day3:checked ~ .pages-wrap .day-content.d3{display:block}
+#day4:checked ~ .pages-wrap .day-content.d4{display:block}
+
+/* ---- EXISTING CONTENT STYLES ---- */
+.day-header{display:flex;align-items:center;gap:12px;padding:4px 0 12px;border-bottom:2px dashed var(--border);margin-bottom:16px;}
+.day-badge{background:linear-gradient(135deg,var(--sand),var(--coral));color:#fff;border-radius:14px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex:none;box-shadow:0 4px 12px rgba(255,107,107,0.35);font-family:'Pacifico',cursive;}
+.day-title{font-size:15px;font-weight:700;color:var(--txt)}
+.day-date{font-size:11px;color:var(--txt2);margin-top:3px}
+.loc-img{width:100%;height:140px;object-fit:cover;border-radius:14px;margin:8px 0 6px;display:block;border:2px solid var(--border);}
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:linear-gradient(to bottom,var(--ocean2),var(--foam));border-radius:2px;}
+.t-item{position:relative;margin-bottom:18px}
+.t-dot{position:absolute;left:-24px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--ocean);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--ocean2);}
+.t-time{font-size:11px;color:var(--ocean);font-weight:700;margin-bottom:3px;letter-spacing:0.5px}
+.t-place{font-size:14px;font-weight:700;color:var(--txt);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.t-place a{color:var(--txt);text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
+.map-link{display:inline-flex;align-items:center;gap:3px;background:linear-gradient(135deg,var(--ocean),var(--ocean2));color:#fff;border-radius:10px;padding:2px 8px;font-size:10px;font-weight:700;text-decoration:none;flex-shrink:0;}
+.map-link i{font-size:12px}
+.t-note{font-size:12px;color:var(--txt2);margin-top:5px;line-height:1.7}
+.t-tag{display:inline-block;font-size:10px;padding:3px 9px;border-radius:12px;margin-top:5px;font-weight:700;}
+.tag-eat{background:#fff0e6;color:#f4511e;border:1px solid #ffccbc}
+.tag-shop{background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9}
+.tag-see{background:#e3f2fd;color:#1565c0;border:1px solid #bbdefb}
+.tag-transport{background:#f3e5f5;color:#6a1b9a;border:1px solid #e1bee7}
+.tip-box{background:linear-gradient(135deg,#fff9e6,#fff3cd);border-radius:14px;padding:12px 14px;margin:0 0 16px;border-left:4px solid var(--sand);display:flex;gap:8px;align-items:flex-start;}
+.tip-box .tip-icon{font-size:18px;flex-shrink:0}
+.tip-box .tip-content .tip-title{font-size:12px;font-weight:700;color:#b45309;margin-bottom:3px}
+.tip-box .tip-content p{font-size:12px;color:#78540a;line-height:1.7}
+.info-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,150,199,0.06);}
+.info-card h3{font-size:13px;font-weight:700;color:var(--txt);margin-bottom:12px;display:flex;align-items:center;gap:7px;padding-bottom:8px;border-bottom:1.5px solid var(--border);}
+.info-card h3 i{font-size:17px;color:var(--ocean)}
+.food-item{padding:8px 0;border-bottom:1px dashed var(--border)}
+.food-item:last-child{border:none}
+.food-name{font-size:13px;font-weight:700;color:var(--txt)}
+.food-name a{color:var(--txt);text-decoration:none}
+.food-desc{font-size:12px;color:var(--txt2);margin-top:3px;line-height:1.6}
+.buy-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.buy-item{background:var(--bg2);border-radius:12px;padding:10px 12px;border:1px solid var(--border);}
+.buy-name{font-size:12px;font-weight:700;color:var(--ocean)}
+.buy-desc{font-size:11px;color:var(--txt2);margin-top:3px;line-height:1.4}
+.transport-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border)}
+.transport-row:last-child{border:none}
+.bus-no{background:linear-gradient(135deg,var(--ocean),var(--ocean2));color:#fff;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;flex:none;min-width:44px;text-align:center;}
+.transport-info{font-size:12px;color:var(--txt);line-height:1.6}
+.alert{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:13px;margin-bottom:10px;display:flex;gap:10px;align-items:flex-start;}
+.alert i{font-size:20px;flex:none;margin-top:1px}
+.alert-txt{font-size:12px;color:var(--txt);line-height:1.8}
+.alert-txt strong{font-weight:700}
+.landmark-section{margin-bottom:14px}
+.landmark-section-title{font-size:12px;font-weight:700;color:var(--ocean);letter-spacing:1.5px;text-transform:uppercase;padding:10px 0 6px;border-bottom:2px solid var(--foam);margin-bottom:8px;}
+.landmark-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.landmark-card{background:var(--bg2);border-radius:12px;padding:10px 11px;border:1.5px solid var(--border);text-decoration:none;display:block;}
+.landmark-card .lm-emoji{font-size:20px;margin-bottom:4px}
+.landmark-card .lm-name{font-size:12px;font-weight:700;color:var(--txt);line-height:1.3}
+.landmark-card .lm-area{font-size:10px;color:var(--txt2);margin-top:3px}
+.landmark-card .lm-tag{display:inline-block;font-size:9px;padding:1px 6px;border-radius:6px;margin-top:4px;font-weight:700;}
+.lt-see{background:#e3f2fd;color:#1565c0}
+.lt-nature{background:#e8f5e9;color:#2e7d32}
+.lt-beach{background:#fff8e1;color:#f57f17}
+.lt-culture{background:#f3e5f5;color:#6a1b9a}
+.lt-theme{background:#fce4ec;color:#c62828}
+.food-map-card{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:11px 13px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;text-decoration:none;}
+.food-map-card .fm-emoji{font-size:24px;flex-shrink:0;margin-top:1px}
+.food-map-card .fm-name{font-size:13px;font-weight:700;color:var(--txt)}
+.food-map-card .fm-area{font-size:10px;color:var(--ocean);font-weight:700;margin-top:1px}
+.food-map-card .fm-desc{font-size:11px;color:var(--txt2);margin-top:3px;line-height:1.5}
+.food-map-card .fm-tag{display:inline-block;font-size:9px;padding:2px 7px;border-radius:6px;margin-top:4px;font-weight:700;background:#fff0e6;color:#f4511e;border:1px solid #ffccbc;}
+</style>
+</head>
+<body>
+
+<!-- ALL RADIO INPUTS AT TOP LEVEL so ~ selector works -->
+<!-- Main nav radios -->
+<input type="radio" name="nav" id="nav0" checked>
+<input type="radio" name="nav" id="nav1">
+<input type="radio" name="nav" id="nav2">
+<input type="radio" name="nav" id="nav3">
+<input type="radio" name="nav" id="nav4">
+<input type="radio" name="nav" id="nav5">
+<input type="radio" name="nav" id="nav6">
+<!-- Day sub radios -->
+<input type="radio" name="day" id="day0" checked>
+<input type="radio" name="day" id="day1">
+<input type="radio" name="day" id="day2">
+<input type="radio" name="day" id="day3">
+<input type="radio" name="day" id="day4">
+
+<div class="top-bar">
+  <div>
+    <div class="top-bar-title">沖繩 Summer 🌺</div>
+    <div class="top-bar-sub">7月5–9日 · 逸之彩飯店 · 那霸</div>
+  </div>
+  <span class="top-bar-badge">👨‍👩‍👧 8+2人</span>
+</div>
+
+<div class="pages-wrap">
+
+  <!-- Day tabs bar (only visible on days page) -->
+  <div class="page-section s-days" style="padding-bottom:0">
+    <div class="day-tabs-bar">
+      <label class="day-tab-label" for="day0">Day 1<br><span style="font-size:9px;opacity:0.75">7/5 抵達</span></label>
+      <label class="day-tab-label" for="day1">Day 2<br><span style="font-size:9px;opacity:0.75">7/6 南部</span></label>
+      <label class="day-tab-label" for="day2">Day 3<br><span style="font-size:9px;opacity:0.75">7/7 血拼</span></label>
+      <label class="day-tab-label" for="day3">Day 4<br><span style="font-size:9px;opacity:0.75">7/8 中部</span></label>
+      <label class="day-tab-label" for="day4">Day 5<br><span style="font-size:9px;opacity:0.75">7/9 返台</span></label>
+    </div>
+  </div>
+
+  <!-- Day contents -->
+  <div class="page-section s-days" style="padding-top:0">
+    <div class="day-content d0"><div class="day-header">
+    <div class="day-badge">1</div>
+    <div>
+      <div class="day-title">✈️ 抵達 + 國際通熱身</div>
+      <div class="day-date">7月5日（六）· 17:20 落地</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">17:20</div>
+      <div class="t-place">
+        那霸機場抵達
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=那霸空港+Naha+Airport+Okinawa" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <div class="t-note">入住逸之彩飯店、梳洗休息</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--coral)"></div>
+      <div class="t-time">19:00</div>
+      <div class="t-place">
+        燒肉王（焼肉きんぐ）那霸久茂地店
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=焼肉きんぐ+那覇久茂地店+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-eat">🥩 晚餐</span>
+      <div class="t-note">吃到飽・三種價位・CP值高・適合大家庭，務必提前訂位！</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">21:00</div>
+      <div class="t-place">
+        國際通夜逛
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=国際通り+那覇+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-shop">🛍 購物</span>
+      <img class="loc-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Kokusai-dori_Avenue_at_night.JPG/1280px-Kokusai-dori_Avenue_at_night.JPG" alt="國際通" onerror="this.style.display='none'">
+      <div class="t-note">1.6公里購物大街 / 壺屋やちむん通り陶器街 / 第一牧志公設市場</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--sand)"></div>
+      <div class="t-place">
+        Blue Seal 冰淇淋
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Blue+Seal+国際通り+那覇+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-eat">🍦 甜點</span>
+      <div class="t-note">沖繩在地品牌・國際通就有・小朋友必吃</div>
+    </div>
+  </div></div>
+    <div class="day-content d1"><div class="day-header">
+    <div class="day-badge">2</div>
+    <div>
+      <div class="day-title">🏯 那霸 + 南部機場周邊</div>
+      <div class="day-date">7月6日（日）· 公車可搭</div>
+    </div>
+  </div>
+  <div class="tip-box">
+    <div class="tip-icon">🚌</div>
+    <div class="tip-content">
+      <div class="tip-title">交通提示</div>
+      <p>首里城搭單軌，之後搭55號公車南下。<br>iias ↔ Ashibinaa 週末有免費接駁車！</p>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">10:00</div>
+      <div class="t-place">
+        首里城
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=首里城+那覇+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-see">🏯 景點</span>
+      <img class="loc-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Shuri_Castle01s3200.jpg/1280px-Shuri_Castle01s3200.jpg" alt="首里城" onerror="this.style.display='none'">
+      <div class="t-note">單軌「首里站」下車步行 / 琉球王國歷史文化中心 / 早上涼爽時去最舒適</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--txt2)"></div>
+      <div class="t-time">11:30</div>
+      <div class="t-place">搭55號公車往南</div>
+      <span class="t-tag tag-transport">🚌 交通</span>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">12:30</div>
+      <div class="t-place">
+        DMM Kariyushi 水族館
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=DMM+Kariyushi+Aquarium+豊見城+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-see">🐠 景點</span>
+      <img class="loc-img" src="https://images.klook.com/c_fill,w_1200,h_630/fl_lossy.progressive,q_85/w_1200,h_630/activities/xtgj2fy9v7tyhhhexrnd/DMM%20Kariyushi%20Aquarium%20Admission%20Ticket.jpg" alt="DMM 水族館" onerror="this.style.display='none'">
+      <div class="t-note">「豐崎美麗SUN海灘前」站下車 / 沉浸式科技水族館 / 可近距離接觸樹懶・水獺・迷你豬 / 建議Klook提前購票</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--sand)"></div>
+      <div class="t-place">
+        iias 豐崎商場午餐
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=iias沖縄豊崎+豊見城市" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-eat">🍔 午餐</span>
+      <div class="t-note">A&W漢堡也在附近（台灣沒有！）</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">15:00</div>
+      <div class="t-place">
+        Ashibinaa Outlet
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=沖縄アウトレットモールあしびなー+豊見城" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-shop">🛍 購物</span>
+      <div class="t-note">Coach・Michael Kors・Adidas・The North Face / 週末有免費接駁車往返 iias</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--coral)"></div>
+      <div class="t-time">17:30</div>
+      <div class="t-place">
+        瀨長島
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=瀬長島+豊見城市+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-see">🌅 夕陽打卡</span>
+      <img class="loc-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Senagajima_island_%281%29.jpg/1280px-Senagajima_island_%281%29.jpg" alt="瀨長島" onerror="this.style.display='none'">
+      <div class="t-note">從 Ashibinaa 計程車約10分鐘 / 飛機從頭頂起降的網美聖地 / 看夕陽・喝咖啡</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--sand)"></div>
+      <div class="t-time">19:30</div>
+      <div class="t-place">
+        牧志站附近晚餐
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=牧志駅+那覇+居酒屋" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-eat">🍜 晚餐</span>
+      <div class="t-note">輕鬆安排・沖繩麵或居酒屋</div>
+    </div>
+  </div></div>
+    <div class="day-content d2"><div class="day-header">
+    <div class="day-badge">3</div>
+    <div>
+      <div class="day-title">🛍 那霸市區全日血拼</div>
+      <div class="day-date">7月7日（一）· 步行 + 單軌</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">10:00</div>
+      <div class="t-place">
+        PARCO CITY（おもろまち站）
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=PARCO+CITY+おもろまち+那覇" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-shop">🛍 購物</span>
+      <div class="t-note">優衣庫・無印良品・各大日系品牌 / 小朋友可加入 teamLab Future Park 互動藝術</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--sand)"></div>
+      <div class="t-time">13:00</div>
+      <div class="t-place">
+        PARCO CITY 美食街午餐
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=PARCO+CITY+おもろまち+那覇" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-eat">🍱 午餐</span>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">14:30</div>
+      <div class="t-place">
+        SAN-A 那霸 Main Place
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=サンエー那覇メインプレイス+那覇" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-shop">💊 購物</span>
+      <div class="t-note">藥妝・食品超市・日常雜貨・掃貨好去處</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--coral)"></div>
+      <div class="t-time">17:30</div>
+      <div class="t-place">
+        暖暮拉麵
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=暖暮ラーメン+国際通り+那覇" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-eat">🍜 晚餐</span>
+      <div class="t-note">建議17:30前到位，避免大排長龍</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">19:30</div>
+      <div class="t-place">
+        國際通夜逛
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=国際通り+那覇+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-shop">🛍 購物</span>
+      <div class="t-note">御菓子御殿（紅芋塔現烤試吃）・Calbee+ 薯條限定口味 / 藥妝店・唐吉軻德</div>
+    </div>
+  </div></div>
+    <div class="day-content d3"><div class="day-header">
+    <div class="day-badge">4</div>
+    <div>
+      <div class="day-title">🇺🇸 中部美國村日</div>
+      <div class="day-date">7月8日（二）· 建議包車共乘</div>
+    </div>
+  </div>
+  <div class="tip-box">
+    <div class="tip-icon">🚗</div>
+    <div class="tip-content">
+      <div class="tip-title">交通建議</div>
+      <p>這天景點分散，建議3-4人共乘計程車或包半日車，比坐公車省時又划算</p>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">09:30</div>
+      <div class="t-place">
+        沖繩兒童王國
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=沖縄こどもの国+沖縄市" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-see">🦁 景點</span>
+      <img class="loc-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Entrance_to_Okinawa_Zoo_%26_Museum.JPG/1280px-Entrance_to_Okinawa_Zoo_%26_Museum.JPG" alt="沖繩兒童王國" onerror="this.style.display='none'">
+      <div class="t-note">動物園 + 博物館 + 遊樂場 / 15歲以下免費 / 平日09:30-17:30（週二休）/ 停留2-3小時讓小朋友放電</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--sand)"></div>
+      <div class="t-time">12:30</div>
+      <div class="t-place">
+        午餐：塔可飯 Charlie's Tacos
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=チャーリー多幸寿+沖縄+タコライス" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-eat">🌮 午餐</span>
+      <div class="t-note">備案：沖繩麵 EIBUN</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">14:00</div>
+      <div class="t-place">
+        AEON 永旺夢樂城沖繩來客夢
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=イオンモール沖縄ライカム+北中城" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-shop">🛍 購物</span>
+      <div class="t-note">超市・藥妝・玩具・寶可夢中心 / 先到1F旅客中心憑護照領優惠券 / 消費滿5,000日圓可換免費高速巴士回那霸！</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--ocean2)"></div>
+      <div class="t-time">17:00</div>
+      <div class="t-place">
+        美國村（北谷）
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=美浜アメリカンビレッジ+北谷町+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-shop">🌟 購物</span>
+      <img class="loc-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Mihama_American_Village_Chatan_Okinawa.jpg/1280px-Mihama_American_Village_Chatan_Okinawa.jpg" alt="美國村" onerror="this.style.display='none'">
+      <div class="t-note">從AEON計程車約15分鐘 / 美式復古風情・服飾品牌・網美咖啡廳 / 晚上燈光夜景最美</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--coral)"></div>
+      <div class="t-time">19:30</div>
+      <div class="t-place">
+        琉球的牛（美國村）
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=琉球の牛+北谷+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-eat">🥩 晚餐</span>
+      <div class="t-note">沖繩最夯燒肉・需提早訂位 / 備案：碧Heki鐵板燒牛排</div>
+    </div>
+  </div></div>
+    <div class="day-content d4"><div class="day-header">
+    <div class="day-badge">5</div>
+    <div>
+      <div class="day-title">✈️ 輕鬆返台</div>
+      <div class="day-date">7月9日（三）· 15:50飛機・13:00前進機場</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">09:00</div>
+      <div class="t-place">飯店早餐 + 打包行李</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">10:00</div>
+      <div class="t-place">
+        國際通最後掃貨
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=国際通り+那覇+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-shop">🛍 購物</span>
+      <div class="t-note">福助玉子燒 / 御菓子御殿（紅芋塔帶回家）/ 藥妝店補貨 / 唐吉軻德</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--txt2)"></div>
+      <div class="t-time">12:00</div>
+      <div class="t-place">
+        前往那霸機場
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=那霸空港+Naha+Airport" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-transport">🚌 交通</span>
+      <div class="t-note">單軌「那霸空港站」或計程車</div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-time">13:00</div>
+      <div class="t-place">
+        機場 Check-in + DFS 免稅店
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=那霸空港+DFS免税店" target="_blank"><i class="ti ti-map-pin"></i>地圖</a>
+      </div>
+      <span class="t-tag tag-shop">🛍 最後衝刺</span>
+    </div>
+    <div class="t-item">
+      <div class="t-dot" style="background:var(--lime)"></div>
+      <div class="t-time">15:50</div>
+      <div class="t-place">起飛返台 ✈</div>
+    </div>
+  </div></div>
+  </div>
+
+  <div class="page-section s-food"><div style="padding-top:14px">
+    <div class="info-card">
+      <h3><i class="ti ti-flame"></i>燒肉・牛排</h3>
+      <div class="food-item">
+        <div class="food-name">燒肉王（焼肉きんぐ）<a class="map-link" href="https://www.google.com/maps/search/?api=1&query=焼肉きんぐ+那覇久茂地" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">那霸久茂地店・吃到飽・三種價位・Day1晚餐首選・務必訂位</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">琉球的牛 <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=琉球の牛+北谷+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">美國村・沖繩最夯和牛燒肉・超人氣・至少提前1週訂位</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">碧 Heki 鐵板燒牛排</div>
+        <div class="food-desc">琉球的牛備案・鐵板燒形式・同樣精彩</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">傑克牛排館 <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=ジャッキーステーキハウス+那覇" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">1953年老字號・沖繩牛排文化必體驗</div>
+      </div>
+    </div>
+    <div class="info-card">
+      <h3><i class="ti ti-soup"></i>在地沖繩料理</h3>
+      <div class="food-item">
+        <div class="food-name">暖暮拉麵 <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=暖暮ラーメン+那覇" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">國際通名店・大排長龍・17:30前到最聰明</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">沖繩麵 EIBUN <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=沖縄そばEIBUN+那覇" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">沖繩傳統麵・豬腳湯底・道地滋味</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">塔可飯 Charlie's Tacos <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=チャーリー多幸寿+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">美軍文化遺留的沖繩限定料理・美國村中部名店</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">豬肉蛋飯糰 <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=ポークたまごおにぎり+牧志+那覇" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">牧志市場附近・沖繩早餐文化・餐肉+蛋的海苔飯糰</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">阿古豬料理</div>
+        <div class="food-desc">沖繩最高品質豬肉・涮涮鍋或燒烤兩吃都好</div>
+      </div>
+    </div>
+    <div class="info-card">
+      <h3><i class="ti ti-ice-cream"></i>甜點・飲料</h3>
+      <div class="food-item">
+        <div class="food-name">Blue Seal 冰淇淋 <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Blue+Seal+国際通り+那覇" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">沖繩在地品牌・紫芋/鹽味黑糖等限定口味・國際通就有</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">御菓子御殿 紅芋塔 <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=御菓子御殿+国際通り+那覇" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">沖繩最代表性甜點・現烤試吃・送人必買</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">Ball Donut Park <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Ball+Donut+Park+国際通り" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">國際通・球形甜甜圈・IG打卡必拍</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">A&W 漢堡 <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=A%26W+豊崎+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">台灣沒有的沖繩限定連鎖・iias豐崎附近・必試</div>
+      </div>
+    </div>
+  </div></div>
+  <div class="page-section s-buy"><div style="padding-top:14px">
+    <div class="info-card">
+      <h3><i class="ti ti-gift"></i>沖繩中南部必買伴手禮</h3>
+      <div class="buy-grid">
+        <div class="buy-item"><div class="buy-name">紅芋塔</div><div class="buy-desc">御菓子御殿・最經典沖繩名產</div></div>
+        <div class="buy-item"><div class="buy-name">金楚糕</div><div class="buy-desc">琉球傳統點心・豬油+砂糖製・新垣菓子店</div></div>
+        <div class="buy-item"><div class="buy-name">辣味蝦餅</div><div class="buy-desc">南風堂老字號・沖繩近海蝦製・唰嘴下酒</div></div>
+        <div class="buy-item"><div class="buy-name">風獅爺餅乾</div><div class="buy-desc">Shisa Cookie・8種口味・送同事超可愛</div></div>
+        <div class="buy-item"><div class="buy-name">黑糖系列</div><div class="buy-desc">沖繩限定・各式口味點心・唐吉軻德最齊</div></div>
+        <div class="buy-item"><div class="buy-name">泡盛酒</div><div class="buy-desc">沖繩特產蒸餾酒・送長輩好選擇</div></div>
+        <div class="buy-item"><div class="buy-name">Calbee薯條</div><div class="buy-desc">沖繩限定包裝+口味・現炸最新鮮</div></div>
+        <div class="buy-item"><div class="buy-name">沖繩雪鹽</div><div class="buy-desc">各式鹽味點心・料理用鹽・實用好禮</div></div>
+      </div>
+    </div>
+    <div class="info-card">
+      <h3><i class="ti ti-building-store"></i>各地購物攻略</h3>
+      <div class="food-item">
+        <div class="food-name">國際通 <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=国際通り+那覇+沖縄" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">伴手禮・藥妝・琉球工藝・唐吉軻德・全程步行</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">PARCO CITY <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=PARCO+CITY+おもろまち+那覇" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">日系流行品牌・無印良品・優衣庫・單軌可達</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">SAN-A 那霸 Main Place <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=サンエー那覇メインプレイス" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">藥妝・生鮮超市・日常雜貨・那霸在地人愛逛</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">Ashibinaa Outlet <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=沖縄アウトレットモールあしびなー" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">Coach・MK・Adidas・North Face 等品牌折扣</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">AEON 來客夢 <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=イオンモール沖縄ライカム+北中城" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">藥妝・玩具・寶可夢中心・消費5000円換免費巴士</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">那霸機場 DFS <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=那覇空港DFS免税店" target="_blank"><i class="ti ti-map-pin"></i>地圖</a></div>
+        <div class="food-desc">出境前免稅品・高端精品・最後衝刺</div>
+      </div>
+    </div>
+    <div class="info-card">
+      <h3><i class="ti ti-pill"></i>藥妝必掃清單</h3>
+      <div class="buy-grid">
+        <div class="buy-item"><div class="buy-name">樂敦眼藥水</div><div class="buy-desc">各種系列・長輩最愛</div></div>
+        <div class="buy-item"><div class="buy-name">撒隆巴斯</div><div class="buy-desc">痠痛貼布・台灣少見款</div></div>
+        <div class="buy-item"><div class="buy-name">小林製藥系列</div><div class="buy-desc">各式生活小物・實用</div></div>
+        <div class="buy-item"><div class="buy-name">防曬乳 SPF50</div><div class="buy-desc">日本款・沖繩烈日超實用</div></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="page-section s-transport"><div style="padding-top:14px">
+    <div class="info-card">
+      <h3><i class="ti ti-train"></i>單軌電車（Yui Rail）</h3>
+      <div class="food-item"><div class="food-name">那霸機場 → 國際通</div><div class="food-desc">「縣廳前站」或「牧志站」下車</div></div>
+      <div class="food-item"><div class="food-name">首里城</div><div class="food-desc">「首里站」下車後步行約15分鐘</div></div>
+      <div class="food-item"><div class="food-name">PARCO CITY</div><div class="food-desc">「おもろまち站」下車即到</div></div>
+      <div class="food-item"><div class="food-name">那霸機場</div><div class="food-desc">「那霸空港站」終點站</div></div>
+    </div>
+    <div class="info-card">
+      <h3><i class="ti ti-bus"></i>常用公車路線</h3>
+      <div class="transport-row"><div class="bus-no">55</div><div class="transport-info">國際通 → DMM水族館（豐見城）・「豐崎美麗SUN海灘前」下車</div></div>
+      <div class="transport-row"><div class="bus-no">TK02</div><div class="transport-info">縣廳前站 → 瀨長島・iias・Ashibinaa（觀光巴士）</div></div>
+      <div class="transport-row"><div class="bus-no">20/120</div><div class="transport-info">那霸 → 美國村・「桑江站」下車步行6分鐘</div></div>
+      <div class="transport-row"><div class="bus-no">21</div><div class="transport-info">那霸巴士總站 → AEON來客夢（直達）約60分</div></div>
+      <div class="transport-row"><div class="bus-no">152</div><div class="transport-info">那霸機場 → AEON來客夢（直達）約60分</div></div>
+    </div>
+    <div class="info-card">
+      <h3><i class="ti ti-car"></i>計程車建議</h3>
+      <div class="food-item"><div class="food-name">3-4人同行時</div><div class="food-desc">計程車往往比公車快又划算，可用 Uber / DiDi 叫車</div></div>
+      <div class="food-item"><div class="food-name">Ashibinaa → 瀨長島</div><div class="food-desc">約10分鐘・建議計程車</div></div>
+      <div class="food-item"><div class="food-name">AEON → 美國村</div><div class="food-desc">約15分鐘・建議計程車</div></div>
+      <div class="food-item"><div class="food-name">Day 4 整天</div><div class="food-desc">兒童王國→AEON→美國村，強烈建議包半日車或計程車共乘</div></div>
+    </div>
+    <div class="info-card">
+      <h3><i class="ti ti-wifi"></i>上網建議</h3>
+      <div class="food-item"><div class="food-name">eSIM 或 WiFi 分享器</div><div class="food-desc">出發前在 KKday/Klook 預購，推薦 SoftBank 或 au 線路</div></div>
+      <div class="food-item"><div class="food-name">免費 WiFi</div><div class="food-desc">那霸市區有 NAHA_CITY_FREE_WIFI・LAWSON 便利商店也有</div></div>
+      <div class="food-item"><div class="food-name">必備 App</div><div class="food-desc">Google Maps・乘換案內（查公車）・tenki.jp（天氣）・Uber / DiDi</div></div>
+    </div>
+  </div></div>
+  <div class="page-section s-tips"><div style="padding-top:14px">
+    <div class="alert"><i class="ti ti-calendar-event" style="color:var(--ocean)"></i><div class="alert-txt"><strong>⏰ 提早訂位！</strong>7月暑假旺季，燒肉王、琉球的牛等熱門餐廳請至少1-2週前訂位</div></div>
+    <div class="alert"><i class="ti ti-sun" style="color:#f3722c"></i><div class="alert-txt"><strong>☀️ 防曬第一！</strong>氣溫30度以上，正午避免長時間戶外。帽子、薄長袖、防曬乳都要帶</div></div>
+    <div class="alert"><i class="ti ti-cloud-storm" style="color:#5c6bc0"></i><div class="alert-txt"><strong>🌀 颱風季注意！</strong>7月是颱風季，出發前務必買旅遊不便險，也要隨身攜帶雨具</div></div>
+    <div class="alert"><i class="ti ti-ticket" style="color:#2e7d32"></i><div class="alert-txt"><strong>🎟 預購門票省時！</strong>DMM水族館、首里城等建議在 Klook/KKday 提前購票，現場可能要排隊</div></div>
+    <div class="alert"><i class="ti ti-building" style="color:#8d6e63"></i><div class="alert-txt"><strong>🏬 AEON 優惠！</strong>1F旅客中心憑護照領折價券；消費滿5,000日圓可換免費高速巴士回那霸</div></div>
+    <div class="alert"><i class="ti ti-bug" style="color:#43a047"></i><div class="alert-txt"><strong>🦟 防蚊液必備！</strong>沖繩夏天蚊子多，帶小孩更要注意，戶外景點時隨時補擦</div></div>
+    <div class="alert"><i class="ti ti-currency-yen" style="color:#e91e63"></i><div class="alert-txt"><strong>💴 現金為主！</strong>部分小店、公車、路邊攤只收現金，建議多帶些日圓備用</div></div>
+    <div class="alert"><i class="ti ti-heart" style="color:#e53935"></i><div class="alert-txt"><strong>🚨 緊急電話</strong><br>救護・消防：119　警察：110<br>台灣辦事處（那霸）：+81-98-862-7008</div></div>
+  </div></div>
+  <div class="page-section s-mapland"><div style="padding-top:14px">
+    <div class="tip-box">
+      <div class="tip-icon">🗺️</div>
+      <div class="tip-content">
+        <div class="tip-title">沖繩全島景點地圖</div>
+        <p>點任一地標卡片即可開啟 Google Maps 導航，涵蓋南・中・北部精選景點 40+</p>
+      </div>
+    </div>
+
+    <!-- 整島 Google 地圖 -->
+<div style="width:100%;border-radius:16px;overflow:hidden;border:2px solid var(--border);margin-bottom:14px;box-shadow:0 4px 16px rgba(0,150,199,0.12);background:linear-gradient(160deg,#d6f0fb 0%,#e8f9ff 60%,#cdf0e8 100%);">
+<svg viewBox="0 0 420 580" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;font-family:'Noto Sans TC',sans-serif;">
+  <defs>
+    <filter id="shadow1"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/></filter>
+  </defs>
+
+  <!-- 背景海洋 -->
+  <rect width="420" height="580" fill="url(#seaGrad)"/>
+  <defs>
+    <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8e8f8"/>
+      <stop offset="100%" stop-color="#d4f1e4"/>
+    </linearGradient>
+    <linearGradient id="landGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5e6c8"/>
+      <stop offset="100%" stop-color="#ecd9a8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 標題 -->
+  <rect x="100" y="10" width="220" height="32" rx="16" fill="#0096c7" opacity="0.9"/>
+  <text x="210" y="31" text-anchor="middle" font-size="13" font-weight="900" fill="white">🗺 沖繩全島景點地圖</text>
+
+  <!-- ===== 沖繩島主體輪廓 (簡化形狀) ===== -->
+  <!-- 南部/那霸 blob -->
+  <ellipse cx="185" cy="490" rx="52" ry="28" fill="url(#landGrad)" filter="url(#shadow1)"/>
+  <!-- 中部 連接區 -->
+  <path d="M145,462 Q148,420 152,390 Q155,360 158,330 Q162,305 165,290 Q168,275 172,265 Q176,255 180,250 Q185,245 190,248 Q197,250 200,258 Q205,268 208,280 Q212,295 214,310 Q217,330 218,355 Q220,380 220,405 Q220,432 218,460 Q215,485 210,500 Q200,515 190,515 Q178,515 168,505 Q155,493 145,462 Z" fill="url(#landGrad)" filter="url(#shadow1)"/>
+  <!-- 北部 細長 -->
+  <path d="M170,250 Q172,235 174,215 Q176,195 178,175 Q180,155 181,135 Q182,115 183,100 Q184,85 185,72 Q186,60 187,52 Q188,44 190,40 Q192,36 194,38 Q197,42 198,52 Q200,65 200,80 Q201,95 201,112 Q202,130 202,150 Q202,170 201,190 Q200,208 199,224 Q198,238 197,248 Q194,256 190,258 Q185,260 180,255 Q175,250 170,250 Z" fill="url(#landGrad)" filter="url(#shadow1)"/>
+
+  <!-- 小島：瀨長島 -->
+  <ellipse cx="162" cy="526" rx="12" ry="7" fill="#ecd9a8" filter="url(#shadow1)"/>
+  <!-- 小島：奧武島 -->
+  <ellipse cx="222" cy="510" rx="9" ry="5" fill="#ecd9a8"/>
+  <!-- 小島：久高島 -->
+  <ellipse cx="248" cy="488" rx="8" ry="4" fill="#ecd9a8"/>
+
+  <!-- ===== 北部 標注 ===== -->
+  <!-- 美麗海水族館 -->
+  <circle cx="168" cy="118" r="5" fill="#0096c7"/>
+  <line x1="168" y1="113" x2="95" y2="102" stroke="#0096c7" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="12" y="90" width="82" height="26" rx="6" fill="white" opacity="0.88"/>
+  <text x="53" y="101" text-anchor="middle" font-size="8.5" font-weight="700" fill="#0096c7">🐋 美麗海水族館</text>
+  <text x="53" y="112" text-anchor="middle" font-size="7.5" fill="#5b7a8a">本部町</text>
+
+  <!-- 古宇利島 -->
+  <ellipse cx="210" cy="80" rx="10" ry="6" fill="#90e0ef" stroke="#0096c7" stroke-width="1.5"/>
+  <line x1="220" y1="80" x2="290" y2="68" stroke="#0096c7" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="290" y="58" width="68" height="26" rx="6" fill="white" opacity="0.88"/>
+  <text x="324" y="69" text-anchor="middle" font-size="8.5" font-weight="700" fill="#0096c7">💙 古宇利島</text>
+  <text x="324" y="80" text-anchor="middle" font-size="7.5" fill="#5b7a8a">今帰仁村</text>
+
+  <!-- JUNGLIA 叢林樂園 -->
+  <circle cx="175" cy="95" r="5" fill="#ff6b6b"/>
+  <line x1="175" y1="90" x2="295" y2="92" stroke="#ff6b6b" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="295" y="82" width="80" height="26" rx="6" fill="white" opacity="0.88"/>
+  <text x="335" y="93" text-anchor="middle" font-size="8.5" font-weight="700" fill="#ff6b6b">🎢 JUNGLIA</text>
+  <text x="335" y="104" text-anchor="middle" font-size="7.5" fill="#5b7a8a">今帰仁村 NEW!</text>
+
+  <!-- 今歸仁城跡 -->
+  <circle cx="180" cy="110" r="4" fill="#6a1b9a"/>
+  <line x1="180" y1="114" x2="296" y2="118" stroke="#6a1b9a" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="108" width="80" height="26" rx="6" fill="white" opacity="0.88"/>
+  <text x="336" y="119" text-anchor="middle" font-size="8.5" font-weight="700" fill="#6a1b9a">🏯 今歸仁城跡</text>
+  <text x="336" y="130" text-anchor="middle" font-size="7.5" fill="#5b7a8a">世界遺產</text>
+
+  <!-- 辺戶岬 -->
+  <circle cx="187" cy="44" r="4" fill="#2e7d32"/>
+  <line x1="191" y1="44" x2="296" y2="44" stroke="#2e7d32" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="34" width="68" height="26" rx="6" fill="white" opacity="0.88"/>
+  <text x="330" y="45" text-anchor="middle" font-size="8.5" font-weight="700" fill="#2e7d32">🌊 辺戶岬</text>
+  <text x="330" y="56" text-anchor="middle" font-size="7.5" fill="#5b7a8a">最北端</text>
+
+  <!-- 備瀬福木林道 -->
+  <circle cx="172" cy="132" r="4" fill="#2e7d32"/>
+  <line x1="165" y1="132" x2="80" y2="128" stroke="#2e7d32" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="8" y="118" width="72" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="44" y="128" text-anchor="middle" font-size="8" font-weight="700" fill="#2e7d32">🌳 備瀬福木道</text>
+  <text x="44" y="137" text-anchor="middle" font-size="7" fill="#5b7a8a">本部町</text>
+
+  <!-- 青之洞窟 -->
+  <circle cx="175" cy="190" r="5" fill="#0096c7"/>
+  <line x1="170" y1="190" x2="80" y2="190" stroke="#0096c7" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="6" y="180" width="74" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="43" y="190" text-anchor="middle" font-size="8.5" font-weight="700" fill="#0096c7">🤿 青之洞窟</text>
+  <text x="43" y="199" text-anchor="middle" font-size="7" fill="#5b7a8a">恩納村</text>
+
+  <!-- 萬座毛 -->
+  <circle cx="173" cy="210" r="4" fill="#2e7d32"/>
+  <line x1="168" y1="210" x2="80" y2="212" stroke="#2e7d32" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="6" y="204" width="74" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="43" y="214" text-anchor="middle" font-size="8.5" font-weight="700" fill="#2e7d32">🌋 萬座毛</text>
+  <text x="43" y="223" text-anchor="middle" font-size="7" fill="#5b7a8a">恩納村</text>
+
+  <!-- ===== 中部 標注 ===== -->
+  <!-- 殘波岬 -->
+  <circle cx="164" cy="246" r="4" fill="#1565c0"/>
+  <line x1="159" y1="246" x2="80" y2="244" stroke="#1565c0" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="6" y="236" width="74" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="43" y="246" text-anchor="middle" font-size="8.5" font-weight="700" fill="#1565c0">🗼 殘波岬燈塔</text>
+  <text x="43" y="255" text-anchor="middle" font-size="7" fill="#5b7a8a">読谷村</text>
+
+  <!-- 美國村 -->
+  <circle cx="173" cy="330" r="6" fill="#ff6b6b"/>
+  <line x1="167" y1="330" x2="80" y2="318" stroke="#ff6b6b" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="4" y="308" width="76" height="26" rx="6" fill="white" opacity="0.88"/>
+  <text x="42" y="319" text-anchor="middle" font-size="8.5" font-weight="700" fill="#ff6b6b">🎡 美國村</text>
+  <text x="42" y="330" text-anchor="middle" font-size="7.5" fill="#5b7a8a">北谷町</text>
+
+  <!-- AEON 來客夢 -->
+  <circle cx="192" cy="355" r="5" fill="#f57f17"/>
+  <line x1="197" y1="355" x2="296" y2="348" stroke="#f57f17" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="296" y="338" width="80" height="26" rx="6" fill="white" opacity="0.88"/>
+  <text x="336" y="349" text-anchor="middle" font-size="8.5" font-weight="700" fill="#f57f17">🛒 AEON 來客夢</text>
+  <text x="336" y="360" text-anchor="middle" font-size="7.5" fill="#5b7a8a">北中城市</text>
+
+  <!-- 海中道路 -->
+  <circle cx="205" cy="330" r="4" fill="#0096c7"/>
+  <line x1="209" y1="330" x2="296" y2="320" stroke="#0096c7" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="310" width="80" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="336" y="320" text-anchor="middle" font-size="8.5" font-weight="700" fill="#0096c7">🌊 海中道路</text>
+  <text x="336" y="329" text-anchor="middle" font-size="7" fill="#5b7a8a">うるま市</text>
+
+  <!-- 勝連城跡 -->
+  <circle cx="210" cy="315" r="4" fill="#6a1b9a"/>
+  <line x1="214" y1="315" x2="296" y2="298" stroke="#6a1b9a" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="288" width="80" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="336" y="298" text-anchor="middle" font-size="8.5" font-weight="700" fill="#6a1b9a">🏰 勝連城跡</text>
+  <text x="336" y="307" text-anchor="middle" font-size="7" fill="#5b7a8a">世界遺產</text>
+
+  <!-- Bios之丘 -->
+  <circle cx="200" cy="300" r="4" fill="#2e7d32"/>
+  <line x1="204" y1="300" x2="296" y2="275" stroke="#2e7d32" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="265" width="74" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="333" y="275" text-anchor="middle" font-size="8.5" font-weight="700" fill="#2e7d32">🌿 Bios之丘</text>
+  <text x="333" y="284" text-anchor="middle" font-size="7" fill="#5b7a8a">うるま市</text>
+
+  <!-- 沖繩兒童王國 -->
+  <circle cx="195" cy="343" r="5" fill="#c62828"/>
+  <line x1="200" y1="343" x2="296" y2="370" stroke="#c62828" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="296" y="360" width="80" height="26" rx="6" fill="white" opacity="0.88"/>
+  <text x="336" y="371" text-anchor="middle" font-size="8.5" font-weight="700" fill="#c62828">🦁 兒童王國</text>
+  <text x="336" y="382" text-anchor="middle" font-size="7.5" fill="#5b7a8a">沖縄市</text>
+
+  <!-- ===== 南部/那霸 標注 ===== -->
+  <!-- 首里城 -->
+  <circle cx="188" cy="454" r="6" fill="#6a1b9a"/>
+  <line x1="182" y1="454" x2="80" y2="442" stroke="#6a1b9a" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="4" y="432" width="76" height="26" rx="6" fill="white" opacity="0.88"/>
+  <text x="42" y="443" text-anchor="middle" font-size="8.5" font-weight="700" fill="#6a1b9a">🏯 首里城</text>
+  <text x="42" y="454" text-anchor="middle" font-size="7.5" fill="#5b7a8a">那霸市</text>
+
+  <!-- 國際通 -->
+  <circle cx="182" cy="470" r="5" fill="#f4511e"/>
+  <line x1="177" y1="470" x2="80" y2="466" stroke="#f4511e" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="4" y="458" width="76" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="42" y="468" text-anchor="middle" font-size="8.5" font-weight="700" fill="#f4511e">🛍 國際通</text>
+  <text x="42" y="477" text-anchor="middle" font-size="7" fill="#5b7a8a">那霸市</text>
+
+  <!-- 瀨長島 -->
+  <circle cx="162" cy="526" r="4" fill="#f57f17"/>
+  <line x1="158" y1="526" x2="80" y2="520" stroke="#f57f17" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="4" y="512" width="76" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="42" y="522" text-anchor="middle" font-size="8.5" font-weight="700" fill="#f57f17">🌅 瀨長島</text>
+  <text x="42" y="531" text-anchor="middle" font-size="7" fill="#5b7a8a">豊見城市</text>
+
+  <!-- DMM 水族館 -->
+  <circle cx="175" cy="510" r="5" fill="#0096c7"/>
+  <line x1="175" y1="505" x2="296" y2="488" stroke="#0096c7" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="296" y="478" width="80" height="26" rx="6" fill="white" opacity="0.88"/>
+  <text x="336" y="489" text-anchor="middle" font-size="8.5" font-weight="700" fill="#0096c7">🐠 DMM水族館</text>
+  <text x="336" y="500" text-anchor="middle" font-size="7.5" fill="#5b7a8a">豊見城市</text>
+
+  <!-- Ashibinaa Outlet -->
+  <circle cx="180" cy="525" r="4" fill="#f4511e"/>
+  <line x1="184" y1="525" x2="296" y2="512" stroke="#f4511e" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="502" width="82" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="337" y="512" text-anchor="middle" font-size="8" font-weight="700" fill="#f4511e">🏬 Ashibinaa</text>
+  <text x="337" y="521" text-anchor="middle" font-size="7" fill="#5b7a8a">豊見城市</text>
+
+  <!-- 齋場御嶽 -->
+  <circle cx="218" cy="500" r="4" fill="#6a1b9a"/>
+  <line x1="222" y1="500" x2="296" y2="526" stroke="#6a1b9a" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="518" width="80" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="336" y="528" text-anchor="middle" font-size="8.5" font-weight="700" fill="#6a1b9a">⛩ 齋場御嶽</text>
+  <text x="336" y="537" text-anchor="middle" font-size="7" fill="#5b7a8a">世界遺產</text>
+
+  <!-- 玉泉洞 -->
+  <circle cx="214" cy="488" r="4" fill="#1565c0"/>
+  <line x1="218" y1="488" x2="296" y2="448" stroke="#1565c0" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="438" width="74" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="333" y="448" text-anchor="middle" font-size="8.5" font-weight="700" fill="#1565c0">🕌 玉泉洞</text>
+  <text x="333" y="457" text-anchor="middle" font-size="7" fill="#5b7a8a">南城市</text>
+
+  <!-- ニライカナイ橋 -->
+  <circle cx="220" cy="478" r="4" fill="#2e7d32"/>
+  <line x1="224" y1="478" x2="296" y2="418" stroke="#2e7d32" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="408" width="80" height="22" rx="5" fill="white" opacity="0.88"/>
+  <text x="336" y="418" text-anchor="middle" font-size="8" font-weight="700" fill="#2e7d32">🌉 ニライカナイ橋</text>
+  <text x="336" y="427" text-anchor="middle" font-size="7" fill="#5b7a8a">南城市</text>
+
+  <!-- 區域標籤 -->
+  <text x="187" y="62" text-anchor="middle" font-size="11" font-weight="900" fill="#0096c7" opacity="0.5">北</text>
+  <text x="185" y="290" text-anchor="middle" font-size="11" font-weight="900" fill="#0096c7" opacity="0.5">中</text>
+  <text x="185" y="440" text-anchor="middle" font-size="11" font-weight="900" fill="#0096c7" opacity="0.5">南</text>
+
+  <!-- 圖例 -->
+  <rect x="8" y="544" width="404" height="30" rx="8" fill="white" opacity="0.7"/>
+  <circle cx="24" cy="559" r="4" fill="#0096c7"/><text x="32" y="563" font-size="8" fill="#1a2e3b">自然/水</text>
+  <circle cx="88" cy="559" r="4" fill="#6a1b9a"/><text x="96" y="563" font-size="8" fill="#1a2e3b">歷史文化</text>
+  <circle cx="162" cy="559" r="4" fill="#ff6b6b"/><text x="170" y="563" font-size="8" fill="#1a2e3b">網美打卡</text>
+  <circle cx="228" cy="559" r="4" fill="#f57f17"/><text x="236" y="563" font-size="8" fill="#1a2e3b">購物/美食</text>
+  <circle cx="294" cy="559" r="4" fill="#c62828"/><text x="302" y="563" font-size="8" fill="#1a2e3b">親子景點</text>
+  <circle cx="352" cy="559" r="4" fill="#2e7d32"/><text x="360" y="563" font-size="8" fill="#1a2e3b">自然絕景</text>
+</svg>
+</div>
+
+    <!-- 南部 -->
+    <div class="landmark-section">
+      <div class="landmark-section-title">🌊 南部・那霸</div>
+      <div class="landmark-grid">
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=首里城+那覇+沖縄" target="_blank">
+          <div class="lm-emoji">🏯</div>
+          <div class="lm-name">首里城</div>
+          <div class="lm-area">那覇市</div>
+          <span class="lm-tag lt-culture">歷史文化</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=国際通り+那覇+沖縄" target="_blank">
+          <div class="lm-emoji">🛍️</div>
+          <div class="lm-name">國際通</div>
+          <div class="lm-area">那覇市</div>
+          <span class="lm-tag lt-see">購物街</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=第一牧志公設市場+那覇" target="_blank">
+          <div class="lm-emoji">🐟</div>
+          <div class="lm-name">牧志公設市場</div>
+          <div class="lm-area">那覇市</div>
+          <span class="lm-tag lt-culture">在地市場</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=壺屋やちむん通り+那覇" target="_blank">
+          <div class="lm-emoji">🏺</div>
+          <div class="lm-name">壺屋陶器街</div>
+          <div class="lm-area">那覇市</div>
+          <span class="lm-tag lt-culture">工藝</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=瀬長島+豊見城+沖縄" target="_blank">
+          <div class="lm-emoji">🌅</div>
+          <div class="lm-name">瀨長島</div>
+          <div class="lm-area">豊見城市</div>
+          <span class="lm-tag lt-beach">夕陽打卡</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=DMM+Kariyushi+Aquarium+豊見城" target="_blank">
+          <div class="lm-emoji">🐠</div>
+          <div class="lm-name">DMM 水族館</div>
+          <div class="lm-area">豊見城市</div>
+          <span class="lm-tag lt-theme">親子必去</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=沖縄アウトレットモールあしびなー+豊見城" target="_blank">
+          <div class="lm-emoji">🏬</div>
+          <div class="lm-name">Ashibinaa Outlet</div>
+          <div class="lm-area">豊見城市</div>
+          <span class="lm-tag lt-see">購物</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=奥武山公園+那覇+沖縄" target="_blank">
+          <div class="lm-emoji">🌳</div>
+          <div class="lm-name">奧武山公園</div>
+          <div class="lm-area">那覇市</div>
+          <span class="lm-tag lt-nature">公園</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=玉泉洞+南城市+沖縄" target="_blank">
+          <div class="lm-emoji">🕌</div>
+          <div class="lm-name">玉泉洞</div>
+          <div class="lm-area">南城市</div>
+          <span class="lm-tag lt-nature">鐘乳洞</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=斎場御嶽+南城市+沖縄" target="_blank">
+          <div class="lm-emoji">⛩️</div>
+          <div class="lm-name">齋場御嶽</div>
+          <div class="lm-area">南城市</div>
+          <span class="lm-tag lt-culture">世界遺產</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=平和祈念公園+糸満市+沖縄" target="_blank">
+          <div class="lm-emoji">🕊️</div>
+          <div class="lm-name">平和祈念公園</div>
+          <div class="lm-area">糸満市</div>
+          <span class="lm-tag lt-culture">歷史</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=識名園+那覇+沖縄" target="_blank">
+          <div class="lm-emoji">🏡</div>
+          <div class="lm-name">識名園</div>
+          <div class="lm-area">那覇市</div>
+          <span class="lm-tag lt-culture">世界遺產</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 中部 -->
+    <div class="landmark-section">
+      <div class="landmark-section-title">🌴 中部</div>
+      <div class="landmark-grid">
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=美浜アメリカンビレッジ+北谷+沖縄" target="_blank">
+          <div class="lm-emoji">🎡</div>
+          <div class="lm-name">美國村</div>
+          <div class="lm-area">北谷町</div>
+          <span class="lm-tag lt-see">網美景點</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=北谷海洋公園+美浜海岸" target="_blank">
+          <div class="lm-emoji">🏖️</div>
+          <div class="lm-name">美浜海岸</div>
+          <div class="lm-area">北谷町</div>
+          <span class="lm-tag lt-beach">海灘</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=イオンモール沖縄ライカム+北中城" target="_blank">
+          <div class="lm-emoji">🛒</div>
+          <div class="lm-name">AEON 來客夢</div>
+          <div class="lm-area">北中城市</div>
+          <span class="lm-tag lt-see">購物</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=沖縄こどもの国+沖縄市" target="_blank">
+          <div class="lm-emoji">🦁</div>
+          <div class="lm-name">沖繩兒童王國</div>
+          <div class="lm-area">沖縄市</div>
+          <span class="lm-tag lt-theme">親子</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=PARCO+CITY+おもろまち+那覇" target="_blank">
+          <div class="lm-emoji">🏢</div>
+          <div class="lm-name">PARCO CITY</div>
+          <div class="lm-area">那覇市</div>
+          <span class="lm-tag lt-see">購物</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=ビオスの丘+うるま市+沖縄" target="_blank">
+          <div class="lm-emoji">🌿</div>
+          <div class="lm-name">Bios之丘</div>
+          <div class="lm-area">うるま市</div>
+          <span class="lm-tag lt-nature">自然體驗</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=海中道路+うるま市+沖縄" target="_blank">
+          <div class="lm-emoji">🌊</div>
+          <div class="lm-name">海中道路</div>
+          <div class="lm-area">うるま市</div>
+          <span class="lm-tag lt-beach">絕景道路</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=勝連城跡+うるま市+沖縄" target="_blank">
+          <div class="lm-emoji">🏰</div>
+          <div class="lm-name">勝連城跡</div>
+          <div class="lm-area">うるま市</div>
+          <span class="lm-tag lt-culture">世界遺產</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=座喜味城跡+読谷村+沖縄" target="_blank">
+          <div class="lm-emoji">🏯</div>
+          <div class="lm-name">座喜味城跡</div>
+          <div class="lm-area">読谷村</div>
+          <span class="lm-tag lt-culture">世界遺產</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=残波岬灯台+読谷村+沖縄" target="_blank">
+          <div class="lm-emoji">🗼</div>
+          <div class="lm-name">殘波岬燈塔</div>
+          <div class="lm-area">読谷村</div>
+          <span class="lm-tag lt-nature">絕景</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=琉球村+恩納村+沖縄" target="_blank">
+          <div class="lm-emoji">🥁</div>
+          <div class="lm-name">琉球村</div>
+          <div class="lm-area">恩納村</div>
+          <span class="lm-tag lt-culture">傳統文化</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=万座毛+恩納村+沖縄" target="_blank">
+          <div class="lm-emoji">🌋</div>
+          <div class="lm-name">萬座毛</div>
+          <div class="lm-area">恩納村</div>
+          <span class="lm-tag lt-nature">絕壁奇景</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 北部 -->
+    <div class="landmark-section">
+      <div class="landmark-section-title">🌺 北部</div>
+      <div class="landmark-grid">
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=沖縄美ら海水族館+本部町" target="_blank">
+          <div class="lm-emoji">🐋</div>
+          <div class="lm-name">美麗海水族館</div>
+          <div class="lm-area">本部町</div>
+          <span class="lm-tag lt-theme">沖繩 No.1</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=古宇利島+今帰仁村+沖縄" target="_blank">
+          <div class="lm-emoji">💙</div>
+          <div class="lm-name">古宇利島</div>
+          <div class="lm-area">今帰仁村</div>
+          <span class="lm-tag lt-beach">戀島</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=古宇利大橋+今帰仁村+沖縄" target="_blank">
+          <div class="lm-emoji">🌉</div>
+          <div class="lm-name">古宇利大橋</div>
+          <div class="lm-area">今帰仁村</div>
+          <span class="lm-tag lt-beach">絕景橋</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=今帰仁城跡+今帰仁村+沖縄" target="_blank">
+          <div class="lm-emoji">🏯</div>
+          <div class="lm-name">今歸仁城跡</div>
+          <div class="lm-area">今帰仁村</div>
+          <span class="lm-tag lt-culture">世界遺產</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=青の洞窟+恩納村+沖縄" target="_blank">
+          <div class="lm-emoji">🤿</div>
+          <div class="lm-name">青之洞窟</div>
+          <div class="lm-area">恩納村</div>
+          <span class="lm-tag lt-beach">潛水勝地</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=JUNGLIA+今帰仁村+沖縄" target="_blank">
+          <div class="lm-emoji">🎢</div>
+          <div class="lm-name">JUNGLIA 叢林樂園</div>
+          <div class="lm-area">今帰仁村</div>
+          <span class="lm-tag lt-theme">新開幕</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=ネオパークオキナワ+名護市" target="_blank">
+          <div class="lm-emoji">🦜</div>
+          <div class="lm-name">名護自然動植物公園</div>
+          <div class="lm-area">名護市</div>
+          <span class="lm-tag lt-nature">自然</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=オリオンハッピーパーク+名護市" target="_blank">
+          <div class="lm-emoji">🍺</div>
+          <div class="lm-name">Orion 啤酒工廠</div>
+          <div class="lm-area">名護市</div>
+          <span class="lm-tag lt-culture">工廠參觀</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=瀬底島+本部町+沖縄" target="_blank">
+          <div class="lm-emoji">🏝️</div>
+          <div class="lm-name">瀬底島</div>
+          <div class="lm-area">本部町</div>
+          <span class="lm-tag lt-beach">美麗海灘</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=名護パイナップルパーク+名護市" target="_blank">
+          <div class="lm-emoji">🍍</div>
+          <div class="lm-name">名護鳳梨園</div>
+          <div class="lm-area">名護市</div>
+          <span class="lm-tag lt-theme">親子</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=辺戸岬+国頭村+沖縄" target="_blank">
+          <div class="lm-emoji">🌊</div>
+          <div class="lm-name">辺戶岬</div>
+          <div class="lm-area">国頭村</div>
+          <span class="lm-tag lt-nature">最北端</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=やんばる国立公園+沖縄北部" target="_blank">
+          <div class="lm-emoji">🌲</div>
+          <div class="lm-name">山原國立公園</div>
+          <div class="lm-area">国頭村</div>
+          <span class="lm-tag lt-nature">世界遺產</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=大石林山+国頭村+沖縄" target="_blank">
+          <div class="lm-emoji">🪨</div>
+          <div class="lm-name">大石林山</div>
+          <div class="lm-area">国頭村</div>
+          <span class="lm-tag lt-nature">奇岩步道</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=備瀬のフクギ並木+本部町+沖縄" target="_blank">
+          <div class="lm-emoji">🌳</div>
+          <div class="lm-name">備瀬福木林道</div>
+          <div class="lm-area">本部町</div>
+          <span class="lm-tag lt-nature">網美秘境</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=本部海洋博公園+本部町+沖縄" target="_blank">
+          <div class="lm-emoji">🌊</div>
+          <div class="lm-name">海洋博公園</div>
+          <div class="lm-area">本部町</div>
+          <span class="lm-tag lt-nature">免費公園</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=エメラルドビーチ+本部町+沖縄" target="_blank">
+          <div class="lm-emoji">🏝️</div>
+          <div class="lm-name">翡翠海灘</div>
+          <div class="lm-area">本部町</div>
+          <span class="lm-tag lt-beach">免費海灘</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=タコちゃんビーチ+古宇利島+沖縄" target="_blank">
+          <div class="lm-emoji">🐙</div>
+          <div class="lm-name">章魚海灘 (古宇利)</div>
+          <div class="lm-area">今帰仁村</div>
+          <span class="lm-tag lt-beach">章魚礁石</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 離島 -->
+    <div class="landmark-section">
+      <div class="landmark-section-title">🏝️ 離島・特色景點</div>
+      <div class="landmark-grid">
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=渡嘉敷島+沖縄+ケラマ" target="_blank">
+          <div class="lm-emoji">🤿</div>
+          <div class="lm-name">渡嘉敷島</div>
+          <div class="lm-area">慶良間諸島</div>
+          <span class="lm-tag lt-beach">慶良間海水</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=座間味島+慶良間+沖縄" target="_blank">
+          <div class="lm-emoji">🐳</div>
+          <div class="lm-name">座間味島</div>
+          <div class="lm-area">慶良間諸島</div>
+          <span class="lm-tag lt-beach">賞鯨聖地</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=久高島+南城市+沖縄" target="_blank">
+          <div class="lm-emoji">🕊️</div>
+          <div class="lm-name">久高島</div>
+          <div class="lm-area">南城市沖</div>
+          <span class="lm-tag lt-culture">神之島</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=浜比嘉島+うるま市+沖縄" target="_blank">
+          <div class="lm-emoji">⛩️</div>
+          <div class="lm-name">浜比嘉島</div>
+          <div class="lm-area">うるま市</div>
+          <span class="lm-tag lt-culture">神話之島</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=奥武島+南城市+沖縄" target="_blank">
+          <div class="lm-emoji">🦈</div>
+          <div class="lm-name">奧武島</div>
+          <div class="lm-area">南城市</div>
+          <span class="lm-tag lt-beach">天婦羅島</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=伊計島+うるま市+沖縄" target="_blank">
+          <div class="lm-emoji">🌅</div>
+          <div class="lm-name">伊計島</div>
+          <div class="lm-area">うるま市</div>
+          <span class="lm-tag lt-beach">秘境海灘</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 其他精選 -->
+    <div class="landmark-section">
+      <div class="landmark-section-title">✨ 精選隱藏版景點</div>
+      <div class="landmark-grid">
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=知念岬公園+南城市+沖縄" target="_blank">
+          <div class="lm-emoji">🌊</div>
+          <div class="lm-name">知念岬公園</div>
+          <div class="lm-area">南城市</div>
+          <span class="lm-tag lt-nature">太平洋絕景</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=ニライカナイ橋+南城市+沖縄" target="_blank">
+          <div class="lm-emoji">🌉</div>
+          <div class="lm-name">ニライカナイ橋</div>
+          <div class="lm-area">南城市</div>
+          <span class="lm-tag lt-nature">天空絕景橋</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=糸満漁民食堂+糸満市+沖縄" target="_blank">
+          <div class="lm-emoji">🐟</div>
+          <div class="lm-name">糸満漁港</div>
+          <div class="lm-area">糸満市</div>
+          <span class="lm-tag lt-culture">海鮮市場</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=琉球ガラス村+糸満市+沖縄" target="_blank">
+          <div class="lm-emoji">🫧</div>
+          <div class="lm-name">琉球玻璃村</div>
+          <div class="lm-area">糸満市</div>
+          <span class="lm-tag lt-culture">工藝體驗</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=波上宮+那覇+沖縄" target="_blank">
+          <div class="lm-emoji">⛩️</div>
+          <div class="lm-name">波上宮</div>
+          <div class="lm-area">那覇市</div>
+          <span class="lm-tag lt-culture">那霸最古老神社</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=金城町石畳道+那覇+沖縄" target="_blank">
+          <div class="lm-emoji">🪨</div>
+          <div class="lm-name">金城町石板道</div>
+          <div class="lm-area">那覇市首里</div>
+          <span class="lm-tag lt-culture">琉球石板路</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=港川外人住宅+浦添市+沖縄" target="_blank">
+          <div class="lm-emoji">🏠</div>
+          <div class="lm-name">港川外人住宅</div>
+          <div class="lm-area">浦添市</div>
+          <span class="lm-tag lt-see">文青聚集地</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=中城城跡+中城村+沖縄" target="_blank">
+          <div class="lm-emoji">🏰</div>
+          <div class="lm-name">中城城跡</div>
+          <div class="lm-area">中城村</div>
+          <span class="lm-tag lt-culture">世界遺產</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=東南植物楽園+沖縄市" target="_blank">
+          <div class="lm-emoji">🌺</div>
+          <div class="lm-name">東南植物樂園</div>
+          <div class="lm-area">沖縄市</div>
+          <span class="lm-tag lt-nature">熱帶植物</span>
+        </a>
+        <a class="landmark-card" href="https://www.google.com/maps/search/?api=1&query=永旺夢楽城中城+沖縄" target="_blank">
+          <div class="lm-emoji">🎠</div>
+          <div class="lm-name">永旺夢樂城中城</div>
+          <div class="lm-area">中城村</div>
+          <span class="lm-tag lt-see">購物+景觀</span>
+        </a>
+      </div>
+    </div>
+
+  </div></div>
+  <div class="page-section s-mapfood"><div style="padding-top:14px">
+    <div class="tip-box">
+      <div class="tip-icon">🍽️</div>
+      <div class="tip-content">
+        <div class="tip-title">沖繩必吃美食地圖</div>
+        <p>點卡片直接開啟 Google Maps！涵蓋那霸・中部・北部各區精選美食 30+</p>
+      </div>
+    </div>
+
+    <!-- 那霸美食地圖 -->
+<div style="width:100%;border-radius:16px;overflow:hidden;border:2px solid var(--border);margin-bottom:14px;box-shadow:0 4px 16px rgba(255,107,107,0.12);background:linear-gradient(160deg,#fff5f0 0%,#fff9e6 60%,#f0fbff 100%);">
+<svg viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;font-family:'Noto Sans TC',sans-serif;">
+  <defs>
+    <filter id="shadow2"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/></filter>
+    <linearGradient id="seaGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fde8d8"/>
+      <stop offset="100%" stop-color="#fef9e8"/>
+    </linearGradient>
+    <linearGradient id="landGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5e6c8"/>
+      <stop offset="100%" stop-color="#ecd9a8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="420" height="560" fill="url(#seaGrad2)"/>
+
+  <!-- 標題 -->
+  <rect x="95" y="10" width="230" height="32" rx="16" fill="#ff6b6b" opacity="0.9"/>
+  <text x="210" y="31" text-anchor="middle" font-size="13" font-weight="900" fill="white">🍽 沖繩必吃美食地圖</text>
+
+  <!-- 島嶼輪廓 -->
+  <ellipse cx="185" cy="490" rx="52" ry="28" fill="url(#landGrad2)" filter="url(#shadow2)"/>
+  <path d="M145,462 Q148,420 152,390 Q155,360 158,330 Q162,305 165,290 Q168,275 172,265 Q176,255 180,250 Q185,245 190,248 Q197,250 200,258 Q205,268 208,280 Q212,295 214,310 Q217,330 218,355 Q220,380 220,405 Q220,432 218,460 Q215,485 210,500 Q200,515 190,515 Q178,515 168,505 Q155,493 145,462 Z" fill="url(#landGrad2)" filter="url(#shadow2)"/>
+  <path d="M170,250 Q172,235 174,215 Q176,195 178,175 Q180,155 181,135 Q182,115 183,100 Q184,85 185,72 Q186,60 187,52 Q188,44 190,40 Q192,36 194,38 Q197,42 198,52 Q200,65 200,80 Q201,95 201,112 Q202,130 202,150 Q202,170 201,190 Q200,208 199,224 Q198,238 197,248 Q194,256 190,258 Q185,260 180,255 Q175,250 170,250 Z" fill="url(#landGrad2)" filter="url(#shadow2)"/>
+  <ellipse cx="162" cy="526" rx="12" ry="7" fill="#ecd9a8"/>
+
+  <!-- ===== 北部美食 ===== -->
+  <!-- 岸本食堂 -->
+  <circle cx="170" cy="118" r="5" fill="#ff6b6b"/>
+  <line x1="165" y1="118" x2="80" y2="108" stroke="#ff6b6b" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="4" y="96" width="76" height="28" rx="6" fill="white" opacity="0.9"/>
+  <text x="42" y="107" text-anchor="middle" font-size="8.5" font-weight="700" fill="#ff6b6b">🍜 岸本食堂</text>
+  <text x="42" y="117" text-anchor="middle" font-size="7" fill="#5b7a8a">100年老店</text>
+  <text x="42" y="126" text-anchor="middle" font-size="7" fill="#5b7a8a">本部町</text>
+
+  <!-- 海人食堂 -->
+  <circle cx="172" cy="100" r="4" fill="#f4511e"/>
+  <line x1="176" y1="100" x2="296" y2="85" stroke="#f4511e" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="296" y="74" width="80" height="28" rx="6" fill="white" opacity="0.9"/>
+  <text x="336" y="84" text-anchor="middle" font-size="8.5" font-weight="700" fill="#f4511e">🐠 海人食堂</text>
+  <text x="336" y="94" text-anchor="middle" font-size="7" fill="#5b7a8a">新鮮海鮮</text>
+  <text x="336" y="103" text-anchor="middle" font-size="7" fill="#5b7a8a">本部町</text>
+
+  <!-- 我部祖河食堂 -->
+  <circle cx="185" cy="155" r="4" fill="#f4511e"/>
+  <line x1="189" y1="155" x2="296" y2="148" stroke="#f4511e" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="296" y="138" width="82" height="28" rx="6" fill="white" opacity="0.9"/>
+  <text x="337" y="148" text-anchor="middle" font-size="8" font-weight="700" fill="#f4511e">🍝 我部祖河食堂</text>
+  <text x="337" y="158" text-anchor="middle" font-size="7" fill="#5b7a8a">名護 沖繩麵</text>
+  <text x="337" y="167" text-anchor="middle" font-size="7" fill="#5b7a8a">名護市</text>
+
+  <!-- Orion 啤酒 -->
+  <circle cx="186" cy="140" r="4" fill="#f57f17"/>
+  <line x1="190" y1="140" x2="296" y2="114" stroke="#f57f17" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="104" width="82" height="22" rx="5" fill="white" opacity="0.9"/>
+  <text x="337" y="114" text-anchor="middle" font-size="8.5" font-weight="700" fill="#f57f17">🍺 Orion 工廠試飲</text>
+  <text x="337" y="123" text-anchor="middle" font-size="7" fill="#5b7a8a">名護市</text>
+
+  <!-- 道之駅許田 -->
+  <circle cx="184" cy="168" r="4" fill="#2e7d32"/>
+  <line x1="188" y1="168" x2="296" y2="172" stroke="#2e7d32" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="162" width="82" height="22" rx="5" fill="white" opacity="0.9"/>
+  <text x="337" y="172" text-anchor="middle" font-size="8.5" font-weight="700" fill="#2e7d32">🍢 道之駅許田</text>
+  <text x="337" y="181" text-anchor="middle" font-size="7" fill="#5b7a8a">名護 伴手禮</text>
+
+  <!-- ===== 中部美食 ===== -->
+  <!-- 琉球的牛 -->
+  <circle cx="175" cy="325" r="6" fill="#c62828"/>
+  <line x1="169" y1="325" x2="80" y2="315" stroke="#c62828" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.8"/>
+  <rect x="4" y="303" width="76" height="28" rx="6" fill="white" opacity="0.9"/>
+  <text x="42" y="314" text-anchor="middle" font-size="8.5" font-weight="700" fill="#c62828">🐄 琉球的牛</text>
+  <text x="42" y="324" text-anchor="middle" font-size="7" fill="#5b7a8a">沖繩最夯和牛</text>
+  <text x="42" y="333" text-anchor="middle" font-size="7" fill="#5b7a8a">北谷町</text>
+
+  <!-- 浜屋そば -->
+  <circle cx="170" cy="342" r="4" fill="#f4511e"/>
+  <line x1="165" y1="342" x2="80" y2="338" stroke="#f4511e" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="4" y="330" width="76" height="22" rx="5" fill="white" opacity="0.9"/>
+  <text x="42" y="340" text-anchor="middle" font-size="8.5" font-weight="700" fill="#f4511e">🍜 浜屋そば</text>
+  <text x="42" y="349" text-anchor="middle" font-size="7" fill="#5b7a8a">北谷 沖繩麵</text>
+
+  <!-- 塔可飯 -->
+  <circle cx="196" cy="355" r="5" fill="#f57f17"/>
+  <line x1="201" y1="355" x2="296" y2="340" stroke="#f57f17" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="296" y="328" width="82" height="28" rx="6" fill="white" opacity="0.9"/>
+  <text x="337" y="338" text-anchor="middle" font-size="8.5" font-weight="700" fill="#f57f17">🌮 塔可飯</text>
+  <text x="337" y="348" text-anchor="middle" font-size="7" fill="#5b7a8a">Charlie's Tacos</text>
+  <text x="337" y="357" text-anchor="middle" font-size="7" fill="#5b7a8a">沖縄市</text>
+
+  <!-- パーラーぱいかじ芒果冰 -->
+  <circle cx="173" cy="358" r="4" fill="#e91e63"/>
+  <line x1="168" y1="358" x2="80" y2="360" stroke="#e91e63" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="4" y="352" width="76" height="22" rx="5" fill="white" opacity="0.9"/>
+  <text x="42" y="362" text-anchor="middle" font-size="8" font-weight="700" fill="#e91e63">🥭 芒果剉冰</text>
+  <text x="42" y="371" text-anchor="middle" font-size="7" fill="#5b7a8a">北谷 ぱいかじ</text>
+
+  <!-- ===== 那霸/南部美食 ===== -->
+  <!-- 燒肉王 -->
+  <circle cx="183" cy="448" r="6" fill="#c62828"/>
+  <line x1="177" y1="448" x2="80" y2="436" stroke="#c62828" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.8"/>
+  <rect x="4" y="424" width="76" height="28" rx="6" fill="white" opacity="0.9"/>
+  <text x="42" y="434" text-anchor="middle" font-size="8.5" font-weight="700" fill="#c62828">🥩 燒肉王</text>
+  <text x="42" y="444" text-anchor="middle" font-size="7" fill="#5b7a8a">那霸 久茂地</text>
+  <text x="42" y="453" text-anchor="middle" font-size="7" fill="#5b7a8a">吃到飽</text>
+
+  <!-- 暖暮拉麵 -->
+  <circle cx="182" cy="464" r="5" fill="#f4511e"/>
+  <line x1="177" y1="464" x2="80" y2="458" stroke="#f4511e" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="4" y="450" width="76" height="22" rx="5" fill="white" opacity="0.9"/>
+  <text x="42" y="460" text-anchor="middle" font-size="8.5" font-weight="700" fill="#f4511e">🍜 暖暮拉麵</text>
+  <text x="42" y="469" text-anchor="middle" font-size="7" fill="#5b7a8a">國際通 名店</text>
+
+  <!-- 傑克牛排 -->
+  <circle cx="186" cy="479" r="4" fill="#c62828"/>
+  <line x1="192" y1="479" x2="296" y2="468" stroke="#c62828" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="296" y="458" width="82" height="22" rx="5" fill="white" opacity="0.9"/>
+  <text x="337" y="468" text-anchor="middle" font-size="8.5" font-weight="700" fill="#c62828">🥩 傑克牛排</text>
+  <text x="337" y="477" text-anchor="middle" font-size="7" fill="#5b7a8a">1953年老字號</text>
+
+  <!-- Blue Seal -->
+  <circle cx="180" cy="493" r="4" fill="#1565c0"/>
+  <line x1="186" y1="493" x2="296" y2="484" stroke="#1565c0" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="296" y="474" width="82" height="22" rx="5" fill="white" opacity="0.9"/>
+  <text x="337" y="484" text-anchor="middle" font-size="8.5" font-weight="700" fill="#1565c0">🍦 Blue Seal 冰淇淋</text>
+  <text x="337" y="493" text-anchor="middle" font-size="7" fill="#5b7a8a">國際通</text>
+
+  <!-- 御菓子御殿 -->
+  <circle cx="183" cy="506" r="4" fill="#e91e63"/>
+  <line x1="189" y1="506" x2="296" y2="498" stroke="#e91e63" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+  <rect x="296" y="490" width="82" height="22" rx="5" fill="white" opacity="0.9"/>
+  <text x="337" y="500" text-anchor="middle" font-size="8.5" font-weight="700" fill="#e91e63">🍠 紅芋塔</text>
+  <text x="337" y="509" text-anchor="middle" font-size="7" fill="#5b7a8a">御菓子御殿</text>
+
+  <!-- 牧志公設市場 -->
+  <circle cx="188" cy="518" r="4" fill="#f57f17"/>
+  <line x1="192" y1="518" x2="296" y2="514" stroke="#f57f17" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="296" y="506" width="82" height="22" rx="5" fill="white" opacity="0.9"/>
+  <text x="337" y="516" text-anchor="middle" font-size="8.5" font-weight="700" fill="#f57f17">🦀 牧志公設市場</text>
+  <text x="337" y="525" text-anchor="middle" font-size="7" fill="#5b7a8a">海鮮現吃</text>
+
+  <!-- 豬肉蛋飯糰 -->
+  <circle cx="185" cy="530" r="4" fill="#f4511e"/>
+  <line x1="180" y1="530" x2="80" y2="524" stroke="#f4511e" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+  <rect x="4" y="518" width="76" height="22" rx="5" fill="white" opacity="0.9"/>
+  <text x="42" y="528" text-anchor="middle" font-size="8" font-weight="700" fill="#f4511e">🍙 豬肉蛋飯糰</text>
+  <text x="42" y="537" text-anchor="middle" font-size="7" fill="#5b7a8a">牧志 早餐</text>
+
+  <!-- 區域標籤 -->
+  <text x="187" y="62" text-anchor="middle" font-size="11" font-weight="900" fill="#ff6b6b" opacity="0.4">北</text>
+  <text x="185" y="290" text-anchor="middle" font-size="11" font-weight="900" fill="#ff6b6b" opacity="0.4">中</text>
+  <text x="185" y="430" text-anchor="middle" font-size="11" font-weight="900" fill="#ff6b6b" opacity="0.4">南</text>
+
+  <!-- 圖例 -->
+  <rect x="8" y="543" width="404" height="14" rx="6" fill="white" opacity="0.65"/>
+  <circle cx="24" cy="550" r="3.5" fill="#c62828"/><text x="31" y="554" font-size="7.5" fill="#1a2e3b">燒肉/牛排</text>
+  <circle cx="92" cy="550" r="3.5" fill="#f4511e"/><text x="99" y="554" font-size="7.5" fill="#1a2e3b">麵食/在地料理</text>
+  <circle cx="188" cy="550" r="3.5" fill="#e91e63"/><text x="195" y="554" font-size="7.5" fill="#1a2e3b">甜點</text>
+  <circle cx="236" cy="550" r="3.5" fill="#f57f17"/><text x="243" y="554" font-size="7.5" fill="#1a2e3b">市場/伴手禮</text>
+  <circle cx="316" cy="550" r="3.5" fill="#1565c0"/><text x="323" y="554" font-size="7.5" fill="#1a2e3b">冰品/飲料</text>
+</svg>
+</div>
+
+    <!-- 那霸・南部 -->
+    <div class="landmark-section">
+      <div class="landmark-section-title">🌊 那霸・南部 美食</div>
+    </div>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=焼肉きんぐ+那覇久茂地店" target="_blank">
+      <div class="fm-emoji">🥩</div>
+      <div class="fm-body">
+        <div class="fm-name">燒肉王（焼肉きんぐ）那霸久茂地</div>
+        <div class="fm-area">📍 那覇市久茂地</div>
+        <div class="fm-desc">吃到飽三種價位・家族聚餐首選・7月務必提前訂位</div>
+        <span class="fm-tag">燒肉吃到飽</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=暖暮ラーメン+国際通り+那覇" target="_blank">
+      <div class="fm-emoji">🍜</div>
+      <div class="fm-body">
+        <div class="fm-name">暖暮拉麵</div>
+        <div class="fm-area">📍 那覇市 國際通附近</div>
+        <div class="fm-desc">豚骨濃湯・大排長龍名店・17:30前到避免久等</div>
+        <span class="fm-tag">拉麵</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=沖縄そばEIBUN+那覇" target="_blank">
+      <div class="fm-emoji">🍝</div>
+      <div class="fm-body">
+        <div class="fm-name">沖繩麵 EIBUN</div>
+        <div class="fm-area">📍 那覇市</div>
+        <div class="fm-desc">豬腳湯底沖繩傳統麵・在地人愛店・溫暖道地</div>
+        <span class="fm-tag">沖繩麵</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=ポークたまごおにぎり本店+牧志+那覇" target="_blank">
+      <div class="fm-emoji">🍙</div>
+      <div class="fm-body">
+        <div class="fm-name">豬肉蛋飯糰（ポーたま）</div>
+        <div class="fm-area">📍 那覇市牧志</div>
+        <div class="fm-desc">Spam+荷包蛋海苔飯糰・沖繩靈魂早餐・必吃</div>
+        <span class="fm-tag">早餐</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=ジャッキーステーキハウス+那覇" target="_blank">
+      <div class="fm-emoji">🥩</div>
+      <div class="fm-body">
+        <div class="fm-name">傑克牛排館</div>
+        <div class="fm-area">📍 那覇市</div>
+        <div class="fm-desc">1953年老字號・美軍文化的沖繩牛排・24hr營業</div>
+        <span class="fm-tag">牛排</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=Blue+Seal+国際通り+那覇" target="_blank">
+      <div class="fm-emoji">🍦</div>
+      <div class="fm-body">
+        <div class="fm-name">Blue Seal 冰淇淋 國際通店</div>
+        <div class="fm-area">📍 那覇市 國際通</div>
+        <div class="fm-desc">沖繩在地冰淇淋品牌・紫芋/鹽味黑糖等限定口味</div>
+        <span class="fm-tag">冰淇淋</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=御菓子御殿+国際通り+那覇" target="_blank">
+      <div class="fm-emoji">🍠</div>
+      <div class="fm-body">
+        <div class="fm-name">御菓子御殿 紅芋塔</div>
+        <div class="fm-area">📍 那覇市 國際通</div>
+        <div class="fm-desc">沖繩最代表性甜點・現烤試吃・送人必買</div>
+        <span class="fm-tag">甜點伴手禮</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=Ball+Donut+Park+国際通り+那覇" target="_blank">
+      <div class="fm-emoji">🍩</div>
+      <div class="fm-body">
+        <div class="fm-name">Ball Donut Park</div>
+        <div class="fm-area">📍 那覇市 國際通</div>
+        <div class="fm-desc">球形甜甜圈・各種口味・IG打卡超熱門</div>
+        <span class="fm-tag">甜點打卡</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=第一牧志公設市場+那覇+海鮮" target="_blank">
+      <div class="fm-emoji">🦀</div>
+      <div class="fm-body">
+        <div class="fm-name">牧志公設市場（海鮮）</div>
+        <div class="fm-area">📍 那覇市牧志</div>
+        <div class="fm-desc">買了生猛海鮮帶上2樓加工現吃・沖繩必體驗</div>
+        <span class="fm-tag">海鮮</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=首里そば+那覇+沖縄" target="_blank">
+      <div class="fm-emoji">🍵</div>
+      <div class="fm-body">
+        <div class="fm-name">首里そば</div>
+        <div class="fm-area">📍 那覇市首里</div>
+        <div class="fm-desc">首里城附近在地老店・清爽湯底・午餐限定</div>
+        <span class="fm-tag">沖繩麵</span>
+      </div>
+    </a>
+
+    <!-- 中部美食 -->
+    <div class="landmark-section" style="margin-top:14px">
+      <div class="landmark-section-title">🌴 中部 美食</div>
+    </div>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=琉球の牛+北谷+沖縄" target="_blank">
+      <div class="fm-emoji">🐄</div>
+      <div class="fm-body">
+        <div class="fm-name">琉球的牛</div>
+        <div class="fm-area">📍 北谷町 美國村</div>
+        <div class="fm-desc">沖繩最夯和牛燒肉・超高人氣・至少提前1週訂位</div>
+        <span class="fm-tag">和牛燒肉</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=チャーリー多幸寿+沖縄+タコライス" target="_blank">
+      <div class="fm-emoji">🌮</div>
+      <div class="fm-body">
+        <div class="fm-name">塔可飯 Charlie's Tacos</div>
+        <div class="fm-area">📍 沖縄市</div>
+        <div class="fm-desc">美軍文化遺留的沖繩限定料理・米飯版塔可</div>
+        <span class="fm-tag">沖繩限定</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=A%26W+豊崎+iias+沖縄" target="_blank">
+      <div class="fm-emoji">🍔</div>
+      <div class="fm-body">
+        <div class="fm-name">A&W 漢堡 豊崎店</div>
+        <div class="fm-area">📍 豊見城市 iias附近</div>
+        <div class="fm-desc">台灣沒有的沖繩限定連鎖・根汁漂浮冰淇淋必點</div>
+        <span class="fm-tag">美式速食</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=浜屋そば+北谷町+沖縄" target="_blank">
+      <div class="fm-emoji">🍜</div>
+      <div class="fm-body">
+        <div class="fm-name">浜屋そば</div>
+        <div class="fm-area">📍 北谷町</div>
+        <div class="fm-desc">中部沖繩麵老店・豬肉軟嫩・湯頭鮮甜</div>
+        <span class="fm-tag">沖繩麵</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=謝苅ステーキ+北谷+沖縄" target="_blank">
+      <div class="fm-emoji">🥩</div>
+      <div class="fm-body">
+        <div class="fm-name">謝苅ステーキ</div>
+        <div class="fm-area">📍 北谷町</div>
+        <div class="fm-desc">中部平價牛排・在地人愛店・份量超大</div>
+        <span class="fm-tag">牛排</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=パーラーぱいかじ+美浜+北谷" target="_blank">
+      <div class="fm-emoji">🥭</div>
+      <div class="fm-body">
+        <div class="fm-name">パーラーぱいかじ（芒果冰）</div>
+        <div class="fm-area">📍 北谷町 美浜</div>
+        <div class="fm-desc">沖繩芒果剉冰名店・夏天必吃・排隊人潮多</div>
+        <span class="fm-tag">芒果甜點</span>
+      </div>
+    </a>
+
+    <!-- 北部美食 -->
+    <div class="landmark-section" style="margin-top:14px">
+      <div class="landmark-section-title">🌺 北部 美食</div>
+    </div>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=きしもと食堂+本部町+沖縄" target="_blank">
+      <div class="fm-emoji">🍜</div>
+      <div class="fm-body">
+        <div class="fm-name">岸本食堂</div>
+        <div class="fm-area">📍 本部町</div>
+        <div class="fm-desc">北部最古老沖繩麵名店・100年老店・美麗海周邊</div>
+        <span class="fm-tag">百年老店</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=海人食堂+本部町+沖縄" target="_blank">
+      <div class="fm-emoji">🐠</div>
+      <div class="fm-body">
+        <div class="fm-name">海人食堂</div>
+        <div class="fm-area">📍 本部町</div>
+        <div class="fm-desc">漁師直送海鮮料理・超新鮮・美麗海周邊人氣店</div>
+        <span class="fm-tag">海鮮料理</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=道の駅許田+名護市+沖縄" target="_blank">
+      <div class="fm-emoji">🍢</div>
+      <div class="fm-body">
+        <div class="fm-name">道之駅許田 北部名產市場</div>
+        <div class="fm-area">📍 名護市</div>
+        <div class="fm-desc">北部最大休息站・沖繩黑糖、鳳梨、限定伴手禮齊全</div>
+        <span class="fm-tag">名產市場</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=我部祖河食堂+名護市+沖縄" target="_blank">
+      <div class="fm-emoji">🍝</div>
+      <div class="fm-body">
+        <div class="fm-name">我部祖河食堂</div>
+        <div class="fm-area">📍 名護市</div>
+        <div class="fm-desc">名護在地老字號沖繩麵・豬腳軟嫩入味・北部必吃</div>
+        <span class="fm-tag">沖繩麵</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=Orion+ハッピーパーク+名護+ビアガーデン" target="_blank">
+      <div class="fm-emoji">🍺</div>
+      <div class="fm-body">
+        <div class="fm-name">Orion 啤酒工廠 直飲</div>
+        <div class="fm-area">📍 名護市</div>
+        <div class="fm-desc">沖繩代表啤酒・工廠直送現場試飲・比市售更新鮮</div>
+        <span class="fm-tag">沖繩啤酒</span>
+      </div>
+    </a>
+
+    <!-- 全島甜點精選 -->
+    <div class="landmark-section" style="margin-top:14px">
+      <div class="landmark-section-title">🍨 全島 甜點必吃</div>
+    </div>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=ブルーシールアイスパーク+浦添+沖縄" target="_blank">
+      <div class="fm-emoji">🍦</div>
+      <div class="fm-body">
+        <div class="fm-name">Blue Seal 冰淇淋工廠 浦添</div>
+        <div class="fm-area">📍 浦添市</div>
+        <div class="fm-desc">可以自己做冰淇淋的工廠體驗・比一般分店更多口味</div>
+        <span class="fm-tag">體驗工廠</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=ちんすこう本舗+新垣菓子店+那覇" target="_blank">
+      <div class="fm-emoji">🍪</div>
+      <div class="fm-body">
+        <div class="fm-name">新垣菓子店 金楚糕</div>
+        <div class="fm-area">📍 那覇市壺屋</div>
+        <div class="fm-desc">最傳統琉球金楚糕・豬油製法・壺屋陶器街旁</div>
+        <span class="fm-tag">傳統點心</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=名護パイナップルパーク+ジュース" target="_blank">
+      <div class="fm-emoji">🍍</div>
+      <div class="fm-body">
+        <div class="fm-name">名護鳳梨園 現榨果汁</div>
+        <div class="fm-area">📍 名護市</div>
+        <div class="fm-desc">現榨鳳梨汁・鳳梨霜淇淋・親子同樂</div>
+        <span class="fm-tag">新鮮果汁</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=氷ぜんざい+松原屋製菓+那覇" target="_blank">
+      <div class="fm-emoji">🧊</div>
+      <div class="fm-body">
+        <div class="fm-name">沖繩剉冰 ぜんざい</div>
+        <div class="fm-area">📍 那覇市牧志</div>
+        <div class="fm-desc">沖繩式剉冰（非台式）・放金時豆・消暑必吃</div>
+        <span class="fm-tag">沖繩甜點</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=サーターアンダーギー+那覇+国際通り" target="_blank">
+      <div class="fm-emoji">🧆</div>
+      <div class="fm-body">
+        <div class="fm-name">沙塔安達基（炸甜甜圈）</div>
+        <div class="fm-area">📍 那覇市 國際通</div>
+        <div class="fm-desc">沖繩傳統油炸點心・現炸外酥內軟・配黑糖最對味</div>
+        <span class="fm-tag">傳統點心</span>
+      </div>
+    </a>
+
+    <!-- 沖繩在地特色料理 -->
+    <div class="landmark-section" style="margin-top:14px">
+      <div class="landmark-section-title">🐷 沖繩靈魂料理</div>
+    </div>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=ゆいまーる食堂+沖縄+チャンプルー" target="_blank">
+      <div class="fm-emoji">🥬</div>
+      <div class="fm-body">
+        <div class="fm-name">苦瓜炒蛋 ゴーヤチャンプルー</div>
+        <div class="fm-area">📍 各地食堂</div>
+        <div class="fm-desc">沖繩最代表性家常菜・苦瓜+豆腐+豬肉+蛋・任何食堂都有</div>
+        <span class="fm-tag">沖繩家常菜</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=ラフテー+沖縄+居酒屋" target="_blank">
+      <div class="fm-emoji">🍖</div>
+      <div class="fm-body">
+        <div class="fm-name">拉夫提 豬腳（ラフテー）</div>
+        <div class="fm-area">📍 各地居酒屋</div>
+        <div class="fm-desc">泡盛醬油燉豬五花・入口即化・沖繩居酒屋必點</div>
+        <span class="fm-tag">沖繩名菜</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=豆腐よう+沖縄+那覇" target="_blank">
+      <div class="fm-emoji">🧀</div>
+      <div class="fm-body">
+        <div class="fm-name">豆腐よう（發酵豆腐）</div>
+        <div class="fm-area">📍 那覇市</div>
+        <div class="fm-desc">沖繩版起司豆腐・泡盛+紅麴發酵・奇特必嘗</div>
+        <span class="fm-tag">沖繩獨有</span>
+      </div>
+    </a>
+
+    <a class="food-map-card" href="https://www.google.com/maps/search/?api=1&query=海ぶどう+沖縄+那覇" target="_blank">
+      <div class="fm-emoji">🍇</div>
+      <div class="fm-body">
+        <div class="fm-name">海葡萄（海ぶどう）</div>
+        <div class="fm-area">📍 那覇市・各地</div>
+        <div class="fm-desc">沖繩特產海藻・口感QQ彈彈・超市或餐廳都有</div>
+        <span class="fm-tag">沖繩特產</span>
+      </div>
+    </a>
+
+  </div></div>
+
+</div>
+
+<!-- STICKY BOTTOM NAV using labels -->
+<div class="bottom-nav">
+  <label class="nav-label" for="nav0"><span class="nav-icon">📅</span>行程</label>
+  <label class="nav-label" for="nav1"><span class="nav-icon">🍜</span>必吃</label>
+  <label class="nav-label" for="nav2"><span class="nav-icon">🛍</span>必買</label>
+  <label class="nav-label" for="nav3"><span class="nav-icon">🚌</span>交通</label>
+  <label class="nav-label" for="nav4"><span class="nav-icon">⚠️</span>提醒</label>
+  <label class="nav-label" for="nav5"><span class="nav-icon">🗺</span>地圖</label>
+  <label class="nav-label" for="nav6"><span class="nav-icon">🍽</span>美食圖</label>
+</div>
+
+</body>
+</html>
